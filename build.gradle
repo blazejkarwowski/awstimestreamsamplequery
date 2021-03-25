@@ -1,0 +1,36 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.ttpsc.iot.timestream'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation platform('software.amazon.awssdk:bom:2.15.0')
+    implementation("software.amazon.awssdk:timestreamquery")
+    implementation("software.amazon.awssdk:timestreamwrite")
+    implementation("software.amazon.timestream:amazon-timestream-jdbc:1.0.1")
+    implementation("software.amazon.awssdk:apache-client")
+}
+
+test {
+    useJUnitPlatform()
+}
